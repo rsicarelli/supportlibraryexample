@@ -1,16 +1,17 @@
 package br.com.rsicarelli.supportlibraryexample.home;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-
 import br.com.rsicarelli.supportlibraryexample.R;
+import br.com.rsicarelli.supportlibraryexample.presentation.NavigationDrawerActivity;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends NavigationDrawerActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void initializeContentView() {
         setContentView(R.layout.activity_home);
     }
 
+    @Override
+    public int getCurrentMenuItemId() {
+        return R.id.nav_home;
+    }
 }

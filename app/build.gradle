@@ -10,6 +10,8 @@ android {
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -28,6 +30,6 @@ dependencies {
     compile "com.google.android.gms:play-services-maps:$rootProject.playServicesVersion"
 
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    
+
     testCompile "junit:junit:$rootProject.jUnitVersion"
 }
