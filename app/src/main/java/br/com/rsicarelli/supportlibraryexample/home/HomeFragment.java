@@ -12,10 +12,10 @@ import butterknife.ButterKnife;
 /**
  * Created by rodrigosicarelli on 2/28/16.
  */
-public class Fragment extends android.support.v4.app.Fragment {
+public class HomeFragment extends android.support.v4.app.Fragment {
 
-    public static Fragment newInstance() {
-        return new Fragment();
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
     @Nullable

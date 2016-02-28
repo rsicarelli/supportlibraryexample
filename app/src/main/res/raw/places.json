@@ -1,0 +1,74 @@
+{
+  "response": [
+    {
+      "title": "Colosseum",
+      "description": "Undoubtedly, the Colosseum is one of the main attractions and historic monuments of Rome, Italy. It is an amphitheater constructed in the 80 AD (under the rule of Titus), made of stones and concrete. The Colosseum is under protection of UNESCO as the World's Heritage Site and is considered one of the wonders of the world.",
+      "location": "Rome, Italy",
+      "image_uri": "http://www.aesu.com/wp-content/uploads/2013/09/Colosseum.jpg",
+      "lat_lng": {
+        "lat": 41.890251,
+        "lng": 12.492373
+      }
+    },
+    {
+      "title": "Pyramid at Chichén Itzá",
+      "description": "Chichén Itzá, the most famous Mayan temple city, served as the political and economic center of the Mayan civilization. Its various structures – the pyramid of Kukulkan, the Temple of Chac Mool, the Hall of the Thousand Pillars, and the Playing Field of the Prisoners – can still be seen today and are demonstrative of an extraordinary commitment to architectural space and composition. The pyramid itself was the last, and arguably the greatest, of all Mayan temples.",
+      "location": "Yucatan, Mexico",
+      "image_uri": "http://casadelmayordomo.com/english/wp-content/uploads/2015/12/chichen-itza-1.jpg",
+      "lat_lng": {
+        "lat": 20.6783,
+        "lng": -88.5689
+      }
+    },
+    {
+      "title": "Christ Redeemer",
+      "description": "This statue of Jesus stands some 38 meters tall, atop the Corcovado mountain overlooking Rio de Janeiro. Designed by Brazilian Heitor da Silva Costa and created by French sculptor Paul Landowski, it is one of the world’s best-known monuments. The statue took five years to construct and was inaugurated on October 12, 1931. It has become a symbol of the city and of the warmth of the Brazilian people, who receive visitors with open arms.",
+      "location": "Rio de Janeiro, Brazil",
+      "image_uri": "http://passandodefase.com/wp-content/uploads/2015/07/cristo-redentor-wi-fi-olimp%C3%ADadas.jpg",
+      "lat_lng": {
+        "lat": -22.9519,
+        "lng": -43.2105
+      }
+    },
+    {
+      "title": "Great Wall of China",
+      "description": "The Great Wall of China was built to link existing fortifications into a united defense system and better keep invading Mongol tribes out of China. It is the largest man-made monument ever to have been built and it is disputed that it is the only one visible from space. Many thousands of people must have given their lives to build this colossal construction.",
+      "location": "Huairou Qu, China",
+      "image_uri": "http://lingalog.net/dokuwiki/_media/sessions/aventuras/nona/nonab/muralha-da-china.jpg",
+      "lat_lng": {
+        "lat": 40.4319077,
+        "lng": 116.5703749
+      }
+    },
+    {
+      "title": "Machu Picchu",
+      "description": "In the 15th century, the Incan Emperor Pachacútec built a city in the clouds on the mountain known as Machu Picchu (“old mountain”). This extraordinary settlement lies halfway up the Andes Plateau, deep in the Amazon jungle and above the Urubamba River. It was probably abandoned by the Incas because of a smallpox outbreak and, after the Spanish defeated the Incan Empire, the city remained ‘lost’ for over three centuries. It was rediscovered by Hiram Bingham in 1911.",
+      "location": "Cuzco, Peru",
+      "image_uri": "http://mundocrux.com.br/wp-content/uploads/2012/01/machu-picchu-peru.jpg",
+      "lat_lng": {
+        "lat": -13.1631412,
+        "lng": -72.5449629
+      }
+    },
+    {
+      "title": "Petra",
+      "description": "On the edge of the Arabian Desert, Petra was the glittering capital of the Nabataean empire of King Aretas IV (9 B.C. to 40 A.D.). Masters of water technology, the Nabataeans provided their city with great tunnel constructions and water chambers. A theater, modelled on Greek-Roman prototypes, had space for an audience of 4,000. Today, the Palace Tombs of Petra, with the 42-meter-high Hellenistic temple facade on the El-Deir Monastery, are impressive examples of Middle Eastern culture.",
+      "location": "Jordan",
+      "image_uri": "http://tempoparaisrael.com/wp-content/uploads/2014/03/Petra-Monastery.jpg",
+      "lat_lng": {
+        "lat": 30.3284544,
+        "lng": 35.4443622
+      }
+    },
+    {
+      "title": "Taj Mahal",
+      "description": "This immense mausoleum was built on the orders of Shah Jahan, the fifth Muslim Mogul emperor, to honor the memory of his beloved late wife. Built out of white marble and standing in formally laid-out walled gardens, the Taj Mahal is regarded as the most perfect jewel of Muslim art in India. The emperor was consequently jailed and, it is said, could then only see the Taj Mahal out of his small cell window.",
+      "location": "Agra, India",
+      "image_uri": "http://www.allwonders.com/wp-content/uploads/pictures-of-taj-mahal-in-agra-2.jpg",
+      "lat_lng": {
+        "lat": 27.173891,
+        "lng": 78.042068
+      }
+    }
+  ]
+}

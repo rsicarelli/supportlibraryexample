@@ -3,4 +3,5 @@
     <string name="navigation_view_header_title">Support Library Example</string>
     <string name="home">Home</string>
     <string name="maps">Maps</string>
+    <string name="select_a_place">Select a item</string>
 </resources>

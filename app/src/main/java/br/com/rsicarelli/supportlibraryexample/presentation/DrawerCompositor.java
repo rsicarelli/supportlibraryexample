@@ -25,7 +25,6 @@ public class DrawerCompositor extends Fragment implements NavigationView.OnNavig
 
     protected WeakReference<DrawerLayout> drawerLayout;
     protected WeakReference<NavigationView> navigationView;
-
     protected int currentItemId;
 
     private OnDrawerListener drawerListener;
