@@ -8,11 +8,7 @@ import android.support.v7.app.AppCompatDialogFragment;
 import android.view.Window;
 import android.widget.TextView;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.interfaces.DraweeController;
-import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
+import com.github.rahatarmanahmed.cpv.CircularProgressView;
 
 import br.com.rsicarelli.supportlibraryexample.R;
 import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.Place;
@@ -27,10 +23,13 @@ public class WonderPlaceDetailDialog extends AppCompatDialogFragment {
     public static final String ARG_PLACE = "place";
 
     @Bind(R.id.wonder_place_image)
-    SimpleDraweeView wonderPlaceImage;
+    ProgressDraweeView wonderPlaceImage;
 
     @Bind(R.id.name)
     TextView name;
+
+    @Bind(R.id.progress_view)
+    CircularProgressView progressView;
 
     @Bind(R.id.description)
     TextView description;
@@ -61,14 +60,7 @@ public class WonderPlaceDetailDialog extends AppCompatDialogFragment {
         dialog.setContentView(R.layout.dialog_bottom_sheet);
         ButterKnife.bind(this, dialog);
 
-        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(place.getPlaceUri())
-                .setProgressiveRenderingEnabled(true)
-                .build();
-        DraweeController controller = Fresco.newDraweeControllerBuilder()
-                .setImageRequest(request)
-                .build();
-        wonderPlaceImage.setController(controller);
-
+        wonderPlaceImage.setUriWithProgress(place.getPlaceUri(), progressView);
         name.setText(place.title);
         description.setText(place.description);
         location.setText(place.location);

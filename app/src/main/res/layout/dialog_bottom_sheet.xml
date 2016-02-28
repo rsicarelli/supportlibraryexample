@@ -4,20 +4,32 @@
     xmlns:fresco="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    app:behavior_peekHeight="240dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    app:behavior_peekHeight="240dp">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="3dp">
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <br.com.rsicarelli.supportlibraryexample.presentation.ProgressDraweeView
             android:id="@+id/wonder_place_image"
             android:layout_width="match_parent"
             android:layout_height="240dp"
-            fresco:actualImageScaleType="centerCrop" />
+            android:layout_gravity="center"
+            fresco:actualImageScaleType="centerCrop"
+            fresco:placeholderImage="@drawable/ic_place_holder"
+            fresco:placeholderImageScaleType="centerCrop" />
+
+        <com.github.rahatarmanahmed.cpv.CircularProgressView
+            android:id="@+id/progress_view"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            app:cpv_animAutostart="true"
+            app:cpv_indeterminate="true"
+            app:cpv_thickness="4dp" />
 
         <TextView
             android:id="@+id/name"

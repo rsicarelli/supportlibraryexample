@@ -35,6 +35,7 @@ dependencies {
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     compile "com.google.code.gson:gson:$rootProject.gsonVersion"
     compile "com.facebook.fresco:fresco:$rootProject.frescoVersion"
+    compile "com.github.rahatarmanahmed:circularprogressview:$rootProject.circularProgressViewVersion"
 
     testCompile "junit:junit:$rootProject.jUnitVersion"
 }

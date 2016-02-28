@@ -34,4 +34,5 @@ ext {
     butterKnifeVersion = '7.0.1'
     gsonVersion = '2.6.2'
     frescoVersion = '0.9.0'
+    circularProgressViewVersion = '2.4.0'
 }
