@@ -10,10 +10,11 @@
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
+        android:id="@+id/android"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        app:srcCompat="@drawable/ic_android" />
+        app:srcCompat="@drawable/ic_android_anim" />
 
     <TextView
         android:layout_width="wrap_content"

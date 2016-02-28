@@ -12,7 +12,7 @@
         android:drawableLeft="@drawable/ic_home_selector"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
-        android:text="Hello World!" />
+        android:text="@string/a_textview_with_compound_drawable" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,14 +24,14 @@
             android:id="@+id/image_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_home_selector" />
+            app:srcCompat="@drawable/ic_cpu_anim" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="8dp"
-            android:text="Oie" />
+            android:text="@string/a_image_view_with_srccompat_icon" />
     </LinearLayout>
 
     <Button

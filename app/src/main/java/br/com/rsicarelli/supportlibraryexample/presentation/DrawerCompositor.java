@@ -2,6 +2,8 @@ package br.com.rsicarelli.supportlibraryexample.presentation;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Animatable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -10,6 +12,7 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
@@ -65,6 +68,13 @@ public class DrawerCompositor extends Fragment implements NavigationView.OnNavig
         navigationView.get().setNavigationItemSelectedListener(this);
 
         navigationView.get().setCheckedItem(currentItemId);
+        ImageView viewById = (ImageView) navigationView.get().getHeaderView(0).findViewById(R.id.android);
+        Drawable drawable = viewById.getDrawable();
+        if (drawable != null) {
+            if (drawable instanceof Animatable) {
+                ((Animatable) drawable).start();
+            }
+        }
     }
 
     @Override

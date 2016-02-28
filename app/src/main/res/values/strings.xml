@@ -6,4 +6,6 @@
     <string name="select_a_place">Select a item</string>
     <string name="description">Description</string>
     <string name="location">Location</string>
+    <string name="a_textview_with_compound_drawable">A TextView with compound drawable</string>
+    <string name="a_image_view_with_srccompat_icon">A animated vector</string>
 </resources>
