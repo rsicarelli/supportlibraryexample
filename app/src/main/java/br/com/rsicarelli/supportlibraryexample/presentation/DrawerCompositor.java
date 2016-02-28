@@ -1,6 +1,7 @@
 package br.com.rsicarelli.supportlibraryexample.presentation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
 import java.lang.ref.WeakReference;
+
+import br.com.rsicarelli.supportlibraryexample.R;
+import br.com.rsicarelli.supportlibraryexample.home.HomeActivity;
+import br.com.rsicarelli.supportlibraryexample.map.MapActivity;
 
 /**
  * Created by rodrigosicarelli on 2/27/16.
@@ -89,7 +94,19 @@ public class DrawerCompositor extends Fragment implements NavigationView.OnNavig
 
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        return false;
+        drawerLayout.get().closeDrawers();
+
+        if (currentItemId != item.getItemId()) {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    navigateToMenuItem(HomeActivity.class);
+                    break;
+                case R.id.nav_map:
+                    navigateToMenuItem(MapActivity.class);
+                    break;
+            }
+        }
+        return true;
     }
 
     public interface OnDrawerListener {
@@ -98,5 +115,10 @@ public class DrawerCompositor extends Fragment implements NavigationView.OnNavig
         NavigationView getNavigationView();
 
         int getCurrentMenuItemId();
+    }
+
+    private void navigateToMenuItem(java.lang.Class<?> activity) {
+        Intent intent = new Intent(getActivity(), activity);
+        getActivity().startActivity(intent);
     }
 }

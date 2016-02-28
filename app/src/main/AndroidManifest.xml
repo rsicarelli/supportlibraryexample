@@ -17,7 +17,7 @@
 
         <activity
             android:name=".home.HomeActivity"
-            android:label="@string/title_activity_main"
+            android:label="@string/home"
             android:theme="@style/AppTheme.OverlapSystemBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".map.MapActivity"
+            android:label="@string/maps"
+            android:theme="@style/AppTheme.OverlapSystemBar" />
     </application>
 
 </manifest>

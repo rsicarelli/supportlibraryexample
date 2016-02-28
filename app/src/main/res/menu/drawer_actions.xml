@@ -6,4 +6,9 @@
         android:icon="@drawable/ic_home_selector"
         android:title="@string/home" />
 
+    <item
+        android:id="@+id/nav_map"
+        android:icon="@drawable/ic_map_selector"
+        android:title="@string/maps" />
+
 </menu>
