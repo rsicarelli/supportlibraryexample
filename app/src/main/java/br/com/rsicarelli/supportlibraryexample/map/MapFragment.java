@@ -1,10 +1,8 @@
 package br.com.rsicarelli.supportlibraryexample.map;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
-import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -35,7 +33,8 @@ import butterknife.OnClick;
 /**
  * Created by rodrigosicarelli on 2/28/16.
  */
-public class MapFragment extends Fragment implements OnMapReadyCallback, MapContract.View {
+public class MapFragment extends Fragment implements
+        MapContract.View {
 
     private static final float DEFAULT_ZOOM = 15;
 
@@ -45,9 +44,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
 
-    private GoogleMap googleMap;
+    private GoogleMap map;
     private BottomSheetBehavior<LinearLayout> bottomSheetBehavior;
-    private BottomSheetDialog bottomSheetDialog;
 
     public static MapFragment newInstance() {
         return new MapFragment();
@@ -56,14 +54,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
     WonderPlacesAdapter.PlaceItemListener itemListener = new WonderPlacesAdapter.PlaceItemListener() {
         @Override
         public void onPlaceClick(Place place) {
-            updateMapPosition(place);
+            updateMapPositionUi(place);
             collapseBottomSheetView();
         }
     };
-
-    private void collapseBottomSheetView() {
-        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-    }
 
     @Nullable
     @Override
@@ -79,8 +73,9 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MapPresenter actionsListener = new MapPresenter(WonderPlacesRepositories.getInMemoryRepoInstance(
-                new WonderPlacesServiceApiImpl()), this);
+        MapPresenter actionsListener = new MapPresenter(
+                WonderPlacesRepositories.getInMemoryRepoInstance(
+                        new WonderPlacesServiceApiImpl()), this);
         actionsListener.loadWonderPlaces();
     }
 
@@ -96,16 +91,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
     }
 
     private void setUpMapIfNeeded() {
-        if (googleMap == null) {
+        if (map == null) {
             SupportMapFragment supportMapFragment = (SupportMapFragment)
                     getChildFragmentManager().findFragmentById(R.id.map);
-            supportMapFragment.getMapAsync(this);
+            supportMapFragment.getMapAsync(new OnMapReadyCallback() {
+                @Override
+                public void onMapReady(GoogleMap googleMap) {
+                    map = googleMap;
+                }
+            });
         }
-    }
-
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        this.googleMap = googleMap;
     }
 
     private void setUpBottomSheet() {
@@ -129,49 +124,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
 
     private void showBottomSheetView() {
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
-        if (bottomSheetDialog != null) {
-            bottomSheetDialog.dismiss();
-        }
     }
 
-    private void showBottomSheetDialog() {
-        if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            collapseBottomSheetView();
-        }
-
-        bottomSheetDialog = new BottomSheetDialog(getActivity());
-        View view = getActivity().getLayoutInflater().inflate(R.layout.dialog_bottom_sheet, null);
-        //recyclerView.setAdapter(new WonderPlacesAdapter(createItems(), itemListener);
-
-        bottomSheetDialog.setContentView(view);
-        bottomSheetDialog.show();
-        bottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                bottomSheetDialog = null;
-            }
-        });
+    private void collapseBottomSheetView() {
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
     }
 
     @Override
-    public void showWonderPlaceDetail(LatLng latLng) {
-        collapseBottomSheetView();
-
-        //TODO move map and set up the map
-    }
-
-    @Override
-    public void setUpWonderPlaces(WonderPlaces wonderPlaces) {
+    public void setUpWonderPlacesUi(WonderPlaces wonderPlaces) {
         recyclerView.setAdapter(new WonderPlacesAdapter(wonderPlaces, itemListener));
     }
 
     @Override
-    public void updateMapPosition(final Place place) {
+    public void updateMapPositionUi(final Place place) {
         LatLng latLng = new LatLng(place.latLng.lat, place.latLng.lng);
 
-        googleMap.addMarker(new MarkerOptions().position(latLng));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
-        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+        map.addMarker(new MarkerOptions().position(latLng));
+        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
             @Override
             public boolean onMarkerClick(Marker marker) {
                 if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {

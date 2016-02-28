@@ -21,7 +21,7 @@ import android.support.annotation.NonNull;
 import br.com.rsicarelli.supportlibraryexample.data.WonderPlacesRepository;
 import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
 
-public class MapPresenter implements MapContract.UserActionsListener {
+public class MapPresenter implements MapContract.ActionsListener {
 
     private final MapContract.View mapView;
     private final WonderPlacesRepository wonderPlacesRepository;
@@ -36,8 +36,8 @@ public class MapPresenter implements MapContract.UserActionsListener {
         wonderPlacesRepository.getWonderPlaces(new WonderPlacesRepository.LoadPlacesCallback() {
             @Override
             public void onWonderPlacesLoaded(WonderPlaces places) {
-                mapView.setUpWonderPlaces(places);
-                mapView.updateMapPosition(places.getRandomPlace());
+                mapView.setUpWonderPlacesUi(places);
+                mapView.updateMapPositionUi(places.getRandomPlace());
             }
         });
     }
