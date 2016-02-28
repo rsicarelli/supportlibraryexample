@@ -31,4 +31,5 @@ ext {
     supportLibraryVersion = '23.2.0'
     playServicesVersion = '8.4.0'
     jUnitVersion = '4.12'
+    butterKnifeVersion = '7.0.1'
 }
