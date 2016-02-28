@@ -20,6 +20,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import br.com.rsicarelli.supportlibraryexample.presentation.DividerItemDecoration;
 import br.com.rsicarelli.supportlibraryexample.R;
 import br.com.rsicarelli.supportlibraryexample.data.WonderPlacesRepositories;
 import br.com.rsicarelli.supportlibraryexample.data.WonderPlacesServiceApiImpl;
@@ -106,6 +107,7 @@ public class MapFragment extends Fragment implements
     private void setUpBottomSheet() {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), R.drawable.item_divider));
 
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
     }

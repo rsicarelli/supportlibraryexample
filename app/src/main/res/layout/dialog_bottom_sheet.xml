@@ -91,7 +91,7 @@
                         android:id="@+id/location"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:drawableLeft="@drawable/ic_location"
+                        android:drawableLeft="@drawable/ic_location_selector"
                         android:drawablePadding="8dp"
                         android:gravity="center_vertical"
                         android:padding="8dp"

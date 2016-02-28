@@ -1,0 +1,7 @@
+<resources>
+
+    <style name="Example.Bottom.Sheet.Dialog.Style" parent="Theme.Design.BottomSheetDialog">
+        <item name="android:textColorPrimary">@color/primaryDayNightColor</item>
+    </style>
+
+</resources>
