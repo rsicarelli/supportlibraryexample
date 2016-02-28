@@ -8,7 +8,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 
 import br.com.rsicarelli.supportlibraryexample.R;
 import butterknife.Bind;
@@ -50,12 +49,6 @@ public abstract class NavigationDrawerActivity extends AppCompatActivity impleme
             ab.setHomeAsUpIndicator(R.drawable.ic_menu);
             ab.setDisplayHomeAsUpEnabled(true);
         }
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                drawerLayout.openDrawer(GravityCompat.START);
-            }
-        });
     }
 
     @Override
@@ -78,5 +71,11 @@ public abstract class NavigationDrawerActivity extends AppCompatActivity impleme
         if (!drawerCompositor.isDrawerOpen()) {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        drawerLayout.openDrawer(GravityCompat.START);
+        return super.onSupportNavigateUp();
     }
 }
