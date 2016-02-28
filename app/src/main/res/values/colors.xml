@@ -4,4 +4,6 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="transparent_sixty_black">#99000000</color>
+    <color name="primaryDayNightColor">#2E2E2E</color>
+    <color name="primaryBackgroundDayNightColor">@android:color/white</color>
 </resources>

@@ -55,7 +55,7 @@ public class WonderPlaceDetailDialog extends AppCompatDialogFragment {
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+        BottomSheetDialog dialog = new BottomSheetDialog(getActivity(), R.style.Example_Bottom_Sheet_Dialog_Style);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_bottom_sheet);
         ButterKnife.bind(this, dialog);
