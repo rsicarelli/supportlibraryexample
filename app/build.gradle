@@ -30,7 +30,8 @@ dependencies {
     compile "com.google.android.gms:play-services-maps:$rootProject.playServicesVersion"
 
     compile "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    compile 'com.google.code.gson:gson:2.6.2'
+    compile "com.google.code.gson:gson:$rootProject.gsonVersion"
+    compile "com.facebook.fresco:fresco:$rootProject.frescoVersion"
 
     testCompile "junit:junit:$rootProject.jUnitVersion"
 }
