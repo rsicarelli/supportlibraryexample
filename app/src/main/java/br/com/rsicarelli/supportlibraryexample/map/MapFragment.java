@@ -19,13 +19,15 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import br.com.rsicarelli.supportlibraryexample.R;
-import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.Place;
-import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
 import br.com.rsicarelli.supportlibraryexample.data.WonderPlacesRepositories;
 import br.com.rsicarelli.supportlibraryexample.data.WonderPlacesServiceApiImpl;
+import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.Place;
+import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
+import br.com.rsicarelli.supportlibraryexample.presentation.WonderPlaceDetailDialog;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -53,8 +55,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
 
     WonderPlacesAdapter.PlaceItemListener itemListener = new WonderPlacesAdapter.PlaceItemListener() {
         @Override
-        public void onPlaceClick(LatLng latLng) {
-            updateMapPosition(latLng);
+        public void onPlaceClick(Place place) {
+            updateMapPosition(place);
             collapseBottomSheetView();
         }
     };
@@ -113,11 +115,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
         bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
     }
 
-    @OnClick(R.id.showDialogBtn)
-    public void clickOcu(View view) {
-        showBottomSheetDialog();
-    }
-
     @OnClick(R.id.select_a_place)
     public void clickSelectAPlace(View view) {
         switch (bottomSheetBehavior.getState()) {
@@ -157,7 +154,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
     }
 
     @Override
-    public void showWonderPlaceInMap(LatLng latLng) {
+    public void showWonderPlaceDetail(LatLng latLng) {
         collapseBottomSheetView();
 
         //TODO move map and set up the map
@@ -169,9 +166,25 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
     }
 
     @Override
-    public void updateMapPosition(LatLng latLng) {
+    public void updateMapPosition(final Place place) {
+        LatLng latLng = new LatLng(place.latLng.lat, place.latLng.lng);
+
         googleMap.addMarker(new MarkerOptions().position(latLng));
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+        googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                    collapseBottomSheetView();
+                }
+
+                WonderPlaceDetailDialog dialog = new WonderPlaceDetailDialog.Builder()
+                        .setPlace(place)
+                        .build();
+                dialog.show(getChildFragmentManager(), MapFragment.class.getCanonicalName());
+                return false;
+            }
+        });
     }
 
     public static class WonderPlacesAdapter extends RecyclerView.Adapter<WonderPlacesAdapter.ViewHolder> {
@@ -218,13 +231,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, MapCont
 
             @OnClick(R.id.place)
             public void onClick(View v) {
-                LatLng latLng = new LatLng(place.latLng.lat, place.latLng.lng);
-                mListener.onPlaceClick(latLng);
+                mListener.onPlaceClick(place);
             }
         }
 
         public interface PlaceItemListener {
-            void onPlaceClick(LatLng latLng);
+            void onPlaceClick(Place place);
         }
     }
 }

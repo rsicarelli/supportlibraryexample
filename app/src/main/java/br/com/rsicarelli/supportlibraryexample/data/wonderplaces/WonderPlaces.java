@@ -3,7 +3,6 @@ package br.com.rsicarelli.supportlibraryexample.data.wonderplaces;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -16,12 +15,11 @@ public class WonderPlaces implements Parcelable {
     @SerializedName("response")
     public List<Place> places;
 
-    public LatLng getRandomPlaceLatLng() {
+    public Place getRandomPlace() {
         if (places.size() > 0) {
             Random randomGenerator = new Random();
             int index = randomGenerator.nextInt(places.size());
-            Place randomPlace = places.get(index);
-            return new LatLng(randomPlace.latLng.lat, randomPlace.latLng.lng);
+            return places.get(index);
         } else {
             return null;
         }

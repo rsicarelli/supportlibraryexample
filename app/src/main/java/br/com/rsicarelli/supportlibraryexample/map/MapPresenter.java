@@ -18,10 +18,8 @@ package br.com.rsicarelli.supportlibraryexample.map;
 
 import android.support.annotation.NonNull;
 
-import com.google.android.gms.maps.model.LatLng;
-
-import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
 import br.com.rsicarelli.supportlibraryexample.data.WonderPlacesRepository;
+import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
 
 public class MapPresenter implements MapContract.UserActionsListener {
 
@@ -34,17 +32,12 @@ public class MapPresenter implements MapContract.UserActionsListener {
     }
 
     @Override
-    public void openPlaceDetail(LatLng latLng) {
-        mapView.showWonderPlaceInMap(latLng);
-    }
-
-    @Override
     public void loadWonderPlaces() {
         wonderPlacesRepository.getWonderPlaces(new WonderPlacesRepository.LoadPlacesCallback() {
             @Override
             public void onWonderPlacesLoaded(WonderPlaces places) {
                 mapView.setUpWonderPlaces(places);
-                mapView.updateMapPosition(places.getRandomPlaceLatLng());
+                mapView.updateMapPosition(places.getRandomPlace());
             }
         });
     }

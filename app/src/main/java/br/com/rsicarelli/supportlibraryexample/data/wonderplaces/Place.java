@@ -1,5 +1,6 @@
 package br.com.rsicarelli.supportlibraryexample.data.wonderplaces;
 
+import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
@@ -13,9 +14,13 @@ public class Place implements Parcelable {
     public String description;
     public String location;
     @SerializedName("image_uri")
-    public  String imageUri;
+    private String imageUri;
     @SerializedName("lat_lng")
     public PlaceLatLng latLng;
+
+    public Uri getPlaceUri() {
+        return Uri.parse(imageUri);
+    }
 
     @Override
     public int describeContents() {

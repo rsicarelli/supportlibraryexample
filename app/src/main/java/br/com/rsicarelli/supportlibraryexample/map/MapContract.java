@@ -2,6 +2,7 @@ package br.com.rsicarelli.supportlibraryexample.map;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.Place;
 import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
 
 /**
@@ -10,16 +11,14 @@ import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.WonderPlaces;
 public class MapContract {
 
     interface View {
-        void showWonderPlaceInMap(LatLng latLng);
+        void showWonderPlaceDetail(LatLng latLng);
 
         void setUpWonderPlaces(WonderPlaces wonderPlaces);
 
-        void updateMapPosition(LatLng latLng);
+        void updateMapPosition(Place place);
     }
 
     interface UserActionsListener {
-        void openPlaceDetail(LatLng latLng);
-
         void loadWonderPlaces();
     }
 }

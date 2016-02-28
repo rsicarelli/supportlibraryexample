@@ -1,64 +1,92 @@
 package br.com.rsicarelli.supportlibraryexample.presentation;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
-import android.support.design.widget.BottomSheetDialogFragment;
+import android.support.v7.app.AppCompatDialogFragment;
+import android.view.Window;
+import android.widget.TextView;
+
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.interfaces.DraweeController;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 
 import br.com.rsicarelli.supportlibraryexample.R;
+import br.com.rsicarelli.supportlibraryexample.data.wonderplaces.Place;
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by rodrigosicarelli on 2/28/16.
  */
-public class WonderPlaceDetailDialog extends BottomSheetDialogFragment {
+public class WonderPlaceDetailDialog extends AppCompatDialogFragment {
 
-    public static final String ARG_MESSAGE = "message";
+    public static final String ARG_PLACE = "place";
 
-    private CharSequence message;
+    @Bind(R.id.wonder_place_image)
+    SimpleDraweeView wonderPlaceImage;
+
+    @Bind(R.id.name)
+    TextView name;
+
+    @Bind(R.id.description)
+    TextView description;
+
+    @Bind(R.id.location)
+    TextView location;
+
+    private Place place;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         Bundle args = getArguments();
-        message = args.getCharSequence(ARG_MESSAGE);
+        place = args.getParcelable(ARG_PLACE);
+    }
+
+    @Override
+    public void setupDialog(Dialog dialog, int style) {
+        super.setupDialog(dialog, style);
     }
 
     @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         BottomSheetDialog dialog = new BottomSheetDialog(getActivity());
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_bottom_sheet);
+        ButterKnife.bind(this, dialog);
 
-        TextView tvMessage = (TextView) dialog.findViewById(R.id.message);
-        tvMessage.setText(message);
+        ImageRequest request = ImageRequestBuilder.newBuilderWithSource(place.getPlaceUri())
+                .setProgressiveRenderingEnabled(true)
+                .build();
+        DraweeController controller = Fresco.newDraweeControllerBuilder()
+                .setImageRequest(request)
+                .build();
+        wonderPlaceImage.setController(controller);
+
+        name.setText(place.title);
+        description.setText(place.description);
+        location.setText(place.location);
         return dialog;
     }
 
     public static class Builder {
-        private Context context;
-        private CharSequence message;
+        private Place place;
 
-        public Builder(Context context) {
-            this.context = context.getApplicationContext();
-        }
-
-        public Builder setMessage(int messageId) {
-            this.message = context.getText(messageId);
-            return this;
-        }
-
-        public Builder setMessage(String message) {
-            this.message = message;
+        public Builder setPlace(Place place) {
+            this.place = place;
             return this;
         }
 
         public WonderPlaceDetailDialog build() {
             WonderPlaceDetailDialog fragment = new WonderPlaceDetailDialog();
             Bundle args = new Bundle();
-            args.putCharSequence(ARG_MESSAGE, message);
+            args.putParcelable(ARG_PLACE, place);
             fragment.setArguments(args);
             return fragment;
         }
