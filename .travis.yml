@@ -1,0 +1,37 @@
+language: android
+
+jdk:
+ - oraclejdk8
+
+android:
+  components:
+    - tools
+    - build-tools-23.0.2
+    - android-23
+    - extra-android-m2repository
+    - sys-img-x86-android-23
+
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils
+
+before_script:
+  - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
+  - adb shell input keyevent 82 &
+
+env:
+  global:
+    - ADB_INSTALL_TIMEOUT=10
+
+notifications:
+  email: false
+
+sudo: true
+
+script:
+  - ./gradlew test connectedCheck
