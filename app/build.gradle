@@ -11,6 +11,7 @@ android {
         versionCode 1
         versionName "1.0"
 
+        testInstrumentationRunner = "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
@@ -37,5 +38,22 @@ dependencies {
     compile "com.facebook.fresco:fresco:$rootProject.frescoVersion"
     compile "com.github.rahatarmanahmed:circularprogressview:$rootProject.circularProgressViewVersion"
 
+    androidTestCompile "com.android.support:support-v4:$rootProject.supportLibraryVersion"
+    androidTestCompile "com.github.elo7:cappuccino:$rootProject.cappuccinoVersion"
+    androidTestCompile "junit:junit:$rootProject.jUnitVersion"
+    androidTestCompile "com.android.support.test.espresso:espresso-core:$rootProject.espressoCoreVersion"
+    androidTestCompile("com.android.support.test.espresso:espresso-contrib:$rootProject.espressoContribVersion") {
+        exclude group: "com.android.support", module: "appcompat"
+        exclude group: "com.android.support", module: "support-v4"
+        exclude module: "recyclerview-v7"
+    }
+    androidTestCompile "com.android.support.test:runner:$rootProject.testRunnerVersion"
+    androidTestCompile "com.android.support.test:rules:$rootProject.testRulesVersion"
+
     testCompile "junit:junit:$rootProject.jUnitVersion"
+}
+
+configurations.all {
+    resolutionStrategy.force "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    resolutionStrategy.force "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
 }

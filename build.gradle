@@ -12,6 +12,8 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
+        mavenLocal()
+        maven { url "https://jitpack.io" }
     }
 }
 
@@ -35,4 +37,9 @@ ext {
     gsonVersion = '2.6.2'
     frescoVersion = '0.9.0'
     circularProgressViewVersion = '2.4.0'
+    cappuccinoVersion = '0.4'
+    espressoCoreVersion = '2.2.1'
+    espressoContribVersion = '2.2.1'
+    testRunnerVersion = '0.4.1'
+    testRulesVersion = '0.4.1'
 }
