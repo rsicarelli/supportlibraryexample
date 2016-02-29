@@ -26,6 +26,6 @@ public class ExampleApplication extends Application {
 
     static {
         AppCompatDelegate.setDefaultNightMode(
-                AppCompatDelegate.MODE_NIGHT_YES);
+                AppCompatDelegate.MODE_NIGHT_AUTO);
     }
 }

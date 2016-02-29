@@ -1,7 +1,5 @@
 package br.com.rsicarelli.supportlibraryexample.home;
 
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -32,10 +30,10 @@ public class HomeFragment extends android.support.v4.app.Fragment {
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         ButterKnife.bind(this, root);
 
-        Drawable drawable = imageView.getDrawable();
-        if (drawable instanceof Animatable) {
-            ((Animatable) drawable).start();
-        }
+//        Drawable drawable = imageView.getDrawable();
+//        if (drawable instanceof Animatable) {
+//            ((Animatable) drawable).start();
+//        }
 
         return root;
     }

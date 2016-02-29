@@ -16,10 +16,10 @@ android {
     }
     buildTypes {
         release {
-            resValue "string", "GOOGLE_MAPS_KEY", google_maps_key
+            resValue "string", "GOOGLE_MAPS_KEY", "AIzaSyBryC7dtA6yGszZ8WfDTfHLzfUIBsWWt6g"
         }
         debug {
-            resValue "string", "GOOGLE_MAPS_KEY", google_maps_key
+            resValue "string", "GOOGLE_MAPS_KEY", "AIzaSyBryC7dtA6yGszZ8WfDTfHLzfUIBsWWt6g"
         }
     }
 }
