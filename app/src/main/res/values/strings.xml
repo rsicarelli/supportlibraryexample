@@ -3,9 +3,10 @@
     <string name="navigation_view_header_title">Support Library Example</string>
     <string name="home">Home</string>
     <string name="maps">Maps</string>
-    <string name="select_a_place">Select a item</string>
+    <string name="select_a_place">Select a wonder place</string>
     <string name="description">Description</string>
     <string name="location">Location</string>
     <string name="a_textview_with_compound_drawable">A TextView with compound drawable</string>
     <string name="a_image_view_with_srccompat_icon">A animated vector</string>
+    <string name="change_day_night">Change Day Night</string>
 </resources>

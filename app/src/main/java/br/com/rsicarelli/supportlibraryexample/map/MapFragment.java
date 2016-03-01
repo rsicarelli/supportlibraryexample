@@ -47,6 +47,7 @@ public class MapFragment extends Fragment implements
 
     private GoogleMap map;
     private BottomSheetBehavior<LinearLayout> bottomSheetBehavior;
+    private MapPresenter actionsListener;
 
     public static MapFragment newInstance() {
         return new MapFragment();
@@ -74,10 +75,9 @@ public class MapFragment extends Fragment implements
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        MapPresenter actionsListener = new MapPresenter(
+        actionsListener = new MapPresenter(
                 WonderPlacesRepositories.getInMemoryRepoInstance(
                         new WonderPlacesServiceApiImpl()), this);
-        actionsListener.loadWonderPlaces();
     }
 
     @Override
@@ -99,6 +99,7 @@ public class MapFragment extends Fragment implements
                 @Override
                 public void onMapReady(GoogleMap googleMap) {
                     map = googleMap;
+                    actionsListener.loadWonderPlaces();
                 }
             });
         }
@@ -141,22 +142,24 @@ public class MapFragment extends Fragment implements
     public void updateMapPositionUi(final Place place) {
         LatLng latLng = new LatLng(place.latLng.lat, place.latLng.lng);
 
-        map.addMarker(new MarkerOptions().position(latLng));
-        map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
-        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-            @Override
-            public boolean onMarkerClick(Marker marker) {
-                if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-                    collapseBottomSheetView();
-                }
+        if (map != null) {
+            map.addMarker(new MarkerOptions().position(latLng));
+            map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, DEFAULT_ZOOM));
+            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                @Override
+                public boolean onMarkerClick(Marker marker) {
+                    if (bottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                        collapseBottomSheetView();
+                    }
 
-                WonderPlaceDetailDialog dialog = new WonderPlaceDetailDialog.Builder()
-                        .setPlace(place)
-                        .build();
-                dialog.show(getChildFragmentManager(), MapFragment.class.getCanonicalName());
-                return false;
-            }
-        });
+                    WonderPlaceDetailDialog dialog = new WonderPlaceDetailDialog.Builder()
+                            .setPlace(place)
+                            .build();
+                    dialog.show(getChildFragmentManager(), MapFragment.class.getCanonicalName());
+                    return false;
+                }
+            });
+        }
     }
 
     public static class WonderPlacesAdapter extends RecyclerView.Adapter<WonderPlacesAdapter.ViewHolder> {

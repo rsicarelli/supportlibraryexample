@@ -6,8 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/primaryBackgroundDayNightColor"
-    android:orientation="vertical"
-    app:behavior_peekHeight="240dp">
+    android:orientation="vertical">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -43,7 +42,6 @@
             android:textColor="@android:color/white"
             tools:text="Some title" />
     </FrameLayout>
-
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -98,7 +96,6 @@
                         tools:text="teste" />
 
                 </LinearLayout>
-
 
             </android.support.v7.widget.CardView>
 

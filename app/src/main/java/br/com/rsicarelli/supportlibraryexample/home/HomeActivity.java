@@ -1,9 +1,11 @@
 package br.com.rsicarelli.supportlibraryexample.home;
 
+import android.content.res.Configuration;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 
 import br.com.rsicarelli.supportlibraryexample.R;
@@ -12,7 +14,9 @@ import br.com.rsicarelli.supportlibraryexample.presentation.DrawerCompositor;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class HomeActivity extends BaseActivity implements DrawerCompositor.OnDrawerListener {
+public class HomeActivity extends BaseActivity implements
+        DrawerCompositor.OnDrawerListener,
+        HomeFragment.DayNightListener {
 
     @Bind(R.id.toolbar)
     Toolbar toolbar;
@@ -72,4 +76,21 @@ public class HomeActivity extends BaseActivity implements DrawerCompositor.OnDra
     public int getCurrentMenuItemId() {
         return R.id.nav_home;
     }
+
+    @Override
+    public void changeDayNightTheme() {
+        int uiMode = getResources().getConfiguration().uiMode;
+        int dayNightUiMode = uiMode & Configuration.UI_MODE_NIGHT_MASK;
+
+        int mode;
+        if (dayNightUiMode == Configuration.UI_MODE_NIGHT_NO) {
+            mode = AppCompatDelegate.MODE_NIGHT_YES;
+        } else {
+            mode = AppCompatDelegate.MODE_NIGHT_NO;
+        }
+
+        getDelegate().setLocalNightMode(mode);
+        recreate();
+    }
+
 }

@@ -30,18 +30,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
+            android:layout_marginLeft="3dp"
             android:text="@string/a_image_view_with_srccompat_icon" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/change_image_view"
+        android:id="@+id/change_day_night_theme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:background="@android:color/holo_green_dark"
         android:padding="8dp"
-        android:text="Alou" />
+        android:text="@string/change_day_night" />
 
 
 </LinearLayout>
